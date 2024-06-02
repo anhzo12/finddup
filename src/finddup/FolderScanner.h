@@ -22,7 +22,7 @@ private:
     int barWidth = 50;
     unordered_map<string, vector<path>> hashMap;
 
-    bool checkFileAccessShowError(const path& filepath);
+    bool checkFileAccess(const path& filepath);
     bool checkFileAccess(const path& filepath);
     void countFiles(const string& directory);
     void printLoading();

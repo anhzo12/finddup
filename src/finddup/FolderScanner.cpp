@@ -20,24 +20,6 @@ string md5HashFile(const path& filepath) {
     return md5.getHash();
 }
 
-bool FolderScanner::checkFileAccessShowError(const path& filepath) {
-    error_code ec;
-    auto fileStatus = status(filepath, ec);
-
-    if (ec) {
-        cerr << "Error getting status of file: " << filepath << " - " << ec.message() << endl;
-        return false;
-    }
-
-    auto permissions = fileStatus.permissions();
-    if ((permissions & perms::owner_read) != perms::none ||
-        (permissions & perms::group_read) != perms::none ||
-        (permissions & perms::others_read) != perms::none) {
-        return true;
-    }
-
-    return false;
-}
 bool FolderScanner::checkFileAccess(const path& filepath) {
     error_code ec;
     auto fileStatus = status(filepath, ec);
@@ -56,7 +38,7 @@ bool FolderScanner::checkFileAccess(const path& filepath) {
 }
 void FolderScanner::countFiles(const string& directory) {
     for (const auto& entry : recursive_directory_iterator(directory, directory_options::skip_permission_denied)) {
-        if (this->checkFileAccessShowError(entry.path()) && is_regular_file(entry.path())) {
+        if (this->checkFileAccess(entry.path()) && is_regular_file(entry.path())) {
             mtx.lock();
             ++totalFiles;
             mtx.unlock();
