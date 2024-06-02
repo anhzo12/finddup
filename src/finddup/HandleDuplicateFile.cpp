@@ -44,7 +44,7 @@ void HandleDuplicateFile::showAllDuplicate() {
 }
 void HandleDuplicateFile::exportDupFileList() {
     if (duplicateList.empty()) return;
-    ofstream exportFile("dupfilename.txt");
+    ofstream exportFile("duplicate-fil-list.txt");
     for (const auto& paths : duplicateList) {
         exportFile << "File " << paths[0].u8string() << " has same content with: \n";
         for (int i = 1; i < paths.size(); ++i) {
@@ -52,7 +52,7 @@ void HandleDuplicateFile::exportDupFileList() {
         }
     }
     exportFile.close();
-    cout << "File saved at dupfilename.txt\n";
+    cout << "File saved at duplicate-fil-list.txt\n";
 }
 long long HandleDuplicateFile::getNumDupFile() {
     long long sum = 0;

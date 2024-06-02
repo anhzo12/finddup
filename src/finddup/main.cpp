@@ -37,11 +37,11 @@ int main() {
             return 0;
         }
     
-        cout << "\n\nView all errors at error-log.txt";
 
         HandleDuplicateFile hdlDupFile = HandleDuplicateFile(scner.findAllDuplicate());
         hdlDupFile.showAllDuplicate();
 
+        cout << "\n\nView all errors at error-log.txt";
         cout << "\nFound " << hdlDupFile.getNumDupFile() << " files "<<hdlDupFile.getNumDupContent() << " duplicate content\n";
         if (hdlDupFile.getNumDupFile() > 0) {
             int choice;
