@@ -1,5 +1,0 @@
-File C:\Users\nguye\Pictures\Screenshots\Screenshot (21) - Copy - Copy.txt has same content with: 
-	C:\Users\nguye\Pictures\Screenshots\Screenshot (21) - Copy.png
-	C:\Users\nguye\Pictures\Screenshots\Screenshot (21).png
-File C:\Users\nguye\Pictures\Screenshots\Screenshot (15) - Copy.csv has same content with: 
-	C:\Users\nguye\Pictures\Screenshots\Screenshot (15).png
