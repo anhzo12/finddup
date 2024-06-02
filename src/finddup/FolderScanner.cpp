@@ -46,15 +46,16 @@ void FolderScanner::countFiles(const string& directory) {
     }
 }
 void FolderScanner::printLoading() {
-    cout << "\rScanning: [";
+    string prs = "\rScanning: [";
     int progress = scannedFiles * 100 / totalFiles;
     int pos = progress * barWidth / 100;
     for (int i = 0; i < barWidth; ++i) {
-        if (i < pos) cout << "=";
-        else if (i == pos) cout << ">";
-        else cout << " ";
+        if (i < pos) prs += "=";
+        else if (i == pos) prs += ">";
+        else prs += " ";
     }
-    cout << "] " << progress << "%";
+    prs = prs + "] " + to_string(progress) + "%";
+    cout << prs;
     cout.flush();
 }
 void FolderScanner::processFile(const path& filepath) {
@@ -69,10 +70,18 @@ void FolderScanner::processFile(const path& filepath) {
         hashMap[fileHash].push_back(filepath);
     }
     catch (const exception& e) {
-        cerr << "\nError when hashing: " << filepath.u8string() << " - " << e.what() << endl;
+        mtx.lock();
+        errorFile << "\nError when hashing: " << filepath.u8string() << " - " << e.what() << endl;
+        mtx.unlock();
     }
 }
 
+FolderScanner::FolderScanner() {
+    errorFile.open("error-log.txt");
+}
+FolderScanner::~FolderScanner() {
+    errorFile.close();
+}
 void FolderScanner::scan(const string& directory) {
     this->countFiles(directory);
     vector<thread> threads2;
@@ -102,12 +111,16 @@ void FolderScanner::scanAllDrivers() {
                     cout << setw(10) << drivePath.u8string() << endl;
                     threads.emplace_back(&FolderScanner::scan, this, drivePath.u8string());
                 }
-                else {
-                    cerr << "Drive or directory not accessible: " << drivePath.u8string() << endl;
+                else {        mtx.lock();
+
+                    errorFile << "Drive or directory not accessible: " << drivePath.u8string() << endl;
+        mtx.unlock();
                 }
             }
-            catch (const std::exception& e) {
-                cerr << "Error accessing drive: " << drivePath.u8string() << " - " << e.what() << endl;
+            catch (const std::exception& e) {        mtx.lock();
+
+                errorFile << "Error accessing drive: " << drivePath.u8string() << " - " << e.what() << endl;
+        mtx.unlock();
             }
         }
 

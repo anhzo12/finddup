@@ -37,13 +37,15 @@ int main() {
             return 0;
         }
     
+        cout << "\n\nView all errors at error-log.txt";
+
         HandleDuplicateFile hdlDupFile = HandleDuplicateFile(scner.findAllDuplicate());
         hdlDupFile.showAllDuplicate();
 
         cout << "\nFound " << hdlDupFile.getNumDupFile() << " files "<<hdlDupFile.getNumDupContent() << " duplicate content\n";
         if (hdlDupFile.getNumDupFile() > 0) {
             int choice;
-            cout << "\t1: Export data to file\n\t2: Halde now\n\t3: Exit \nYour choice: ";
+            cout << "\t1: Export data to file\n\t2: Hanlde now\n\t3: Exit \nYour choice: ";
             cin >> choice;
             switch (choice) {
             case 1:

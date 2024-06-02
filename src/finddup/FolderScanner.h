@@ -21,14 +21,16 @@ private:
     long long scannedFiles = 0;
     int barWidth = 50;
     unordered_map<string, vector<path>> hashMap;
+    ofstream errorFile;
 
-    bool checkFileAccess(const path& filepath);
     bool checkFileAccess(const path& filepath);
     void countFiles(const string& directory);
     void printLoading();
     void processFile(const path& filepath);
 
 public:
+    FolderScanner();
+    ~FolderScanner();
     void scan(const string& directory);
     void scanAllDrivers();
     vector<vector<path>> findAllDuplicate();
