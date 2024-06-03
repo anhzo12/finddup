@@ -7,7 +7,7 @@ Find Duplicate File Program là một chương trình C++ dùng để tìm các 
 
 - C++17
 - Visual Studio Comunity 2022
-- Chạy chương trình với quyền admin
+- Chạy chương trình với quyền Admin
 
 ## Nguyên lý hoạt động
 Chương trình hoạt động theo các bước sau:
@@ -23,7 +23,8 @@ Chương trình hoạt động theo các bước sau:
    - Lưu trữ giá trị hash và đường dẫn file trong một bảng băm.
 5. **Tìm các file trùng lặp:**
 
-   - Duyệt qua bảng băm để tìm các hash trùng lặp và lưu danh sách các file trùng lặp.
+   - Duyệt qua bảng băm để tìm các hash trùng lặp, các file có nội dung giống nhau sẽ cho ra cùng 1 giá trị hash và đường dẫn rới file sẽ được lưu ở cùng 1 vector
+   - Lưu danh sách các file trùng lặp vào 1 vector để thực hiện các bước xử lý.
 6. **Hiển thị và xử lý file trùng lặp:**
 
    - Hiển thị các file trùng lặp và cho phép người dùng chọn các file để xóa hoặc lưu trữ danh sách tệp trùng lặp vào file.
@@ -32,7 +33,7 @@ Chương trình hoạt động theo các bước sau:
 ## Hướng dẫn cài đặt và chạy
 
 1. **Cài đặt các công cụ cần thiết:**
-   - Khởi chạy Visual Studio với quyền admin
+   - Khởi chạy Visual Studio với quyền Admin
    - Đảm bảo đã cài đặt thông tin C++ Language Standard của dự án là IOS C++ 17 Standard
 
 2. **Biên dịch chương trình:**
