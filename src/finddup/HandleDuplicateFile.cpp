@@ -36,7 +36,7 @@ void HandleDuplicateFile::handleAllFile() {
 void HandleDuplicateFile::showAllDuplicate() {
     cout << endl;
     for (const auto& paths : duplicateList) {
-        cout << "File " << paths[0].u8string() << " has same content with: \n";
+        cout << "\nFile " << paths[0].u8string() << " has same content with: \n";
         for (int i = 1; i < paths.size(); ++i) {
             cout << "\t" << paths[i].u8string() << endl;
         }
@@ -50,6 +50,7 @@ void HandleDuplicateFile::exportDupFileList() {
         for (int i = 1; i < paths.size(); ++i) {
             exportFile << "\t" << paths[i].u8string() << endl;
         }
+        exportFile << endl;
     }
     exportFile.close();
     cout << "File saved at duplicate-fil-list.txt\n";
